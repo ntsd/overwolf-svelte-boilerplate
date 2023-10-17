@@ -5,13 +5,10 @@
 	import { runningGameAtom } from '../stores/runningGame';
 
 	runningGameAtom.subscribe((currentGame) => {
-		console.log('currentGame', currentGame);
 		const gameRunning =
-			currentGame?.id === GAME_ID.LOL_LAUNCHER &&
+			currentGame?.id === GAME_ID.LOL_GAME &&
 			(currentGame?.gameRunning || currentGame?.gameChanged);
 
-		console.log('gameRunning', gameRunning);
-		
 		if (gameRunning) {
 			setRequiredFeatures(REQUIRED_FEATURES);
 			getWindow(WINDOWS_NAME.IN_GAME).then((window) => {
@@ -20,3 +17,5 @@
 		}
 	});
 </script>
+
+Test Background

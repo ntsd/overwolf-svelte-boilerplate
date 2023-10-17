@@ -6,9 +6,11 @@
 </script>
 
 {#if $currentWindowInfoAtom}
-	{#if $currentWindowInfoAtom.id === WINDOWS_NAME.BACKGROUND}
+	{#if $currentWindowInfoAtom.name === WINDOWS_NAME.BACKGROUND}
 		<BackgroundWindow />
-	{:else if $currentWindowInfoAtom.id === WINDOWS_NAME.IN_GAME}
+	{:else if $currentWindowInfoAtom.name === WINDOWS_NAME.IN_GAME}
 		<InGameWindow />
+	{:else}
+		<div>Not running</div>
 	{/if}
 {/if}

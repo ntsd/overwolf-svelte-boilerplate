@@ -11,7 +11,7 @@ export default {
 	plugins: [daisyui],
 	daisyui: {
 		styled: true,
-		base: true,
+		base: false, // don't apply base color, eg. default background
 		utils: true,
 		logs: false,
 		rtl: false,

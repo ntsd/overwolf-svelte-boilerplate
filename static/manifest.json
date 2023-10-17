@@ -45,12 +45,12 @@
     "start_window": "background",
     "windows": {
       "background": {
-        "file": "Files/test.html",
+        "file": "index.html",
         "background_optimization": false,
         "is_background_page": true
       },
       "in_game": {
-        "file": "Files/test.html",
+        "file": "index.html",
         "in_game_only": true,
         "focus_game_takeover": "ReleaseOnHidden",
         "focus_game_takeover_release_hotkey": "showhide",
