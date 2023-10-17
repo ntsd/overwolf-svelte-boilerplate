@@ -3,7 +3,7 @@ import { logDebug } from './logLevel';
 
 export const currentWindowInfoAtom = atom<overwolf.windows.WindowInfo | null>(null);
 
-export function updateCurrentWindow() {
+export function getCurrentWindow() {
 	overwolf.windows.getCurrentWindow((result) => {
 		if (result.success) {
 			currentWindowInfoAtom.set(result.window);
@@ -12,4 +12,4 @@ export function updateCurrentWindow() {
 	});
 }
 
-updateCurrentWindow();
+getCurrentWindow();

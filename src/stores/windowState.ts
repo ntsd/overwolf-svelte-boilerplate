@@ -1,7 +1,7 @@
 import { map } from 'nanostores';
 import { logDebug } from './logLevel';
 
-export const windowStateMap = map<{ [windowId: string]: overwolf.windows.WindowStateChangedEvent }>(
+export const windowStateMap = map<{ [windowName: string]: overwolf.windows.WindowStateChangedEvent }>(
 	{}
 );
 

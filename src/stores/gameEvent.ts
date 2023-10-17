@@ -1,7 +1,7 @@
 import { atom } from 'nanostores';
 import { logDebug, logError } from './logLevel';
 
-const overwolfEvent = overwolf.games.events;
+const gamesEvent = overwolf.games.events;
 const REGISTER_RETRY_TIMEOUT = 10000;
 
 export interface GameEventData<GameInfo, GameEvent> {
@@ -9,7 +9,7 @@ export interface GameEventData<GameInfo, GameEvent> {
 	events?: GameEvent[];
 }
 
-export const requiredFeaturesAtom = atom<string[]>([]);
+export const gameEventRequiredFeaturesAtom = atom<string[]>([]);
 export const gameEventAtom = atom<unknown[]>([]);
 export const gameInfoAtom = atom<unknown>({});
 
@@ -24,26 +24,27 @@ function handleGameEvent({ info, events }: GameEventData<unknown, unknown>) {
 	}
 }
 
-function registerToGepCallback({ success }: { success: boolean }) {
-	if (success) {
-		overwolfEvent.onInfoUpdates2.removeListener(handleGameEvent);
-		overwolfEvent.onNewEvents.removeListener(handleGameEvent);
+function registerToGepCallback(result: overwolf.games.events.SetRequiredFeaturesResult) {
+	if (result.success) {
+		gamesEvent.onInfoUpdates2.removeListener(handleGameEvent);
+		gamesEvent.onNewEvents.removeListener(handleGameEvent);
 
-		overwolfEvent.onInfoUpdates2.addListener(handleGameEvent);
-		overwolfEvent.onNewEvents.addListener(handleGameEvent);
+		gamesEvent.onInfoUpdates2.addListener(handleGameEvent);
+		gamesEvent.onNewEvents.addListener(handleGameEvent);
 		return;
 	}
 
 	// retry set required if failed
 	logError(
-		`[overwolf-nanostores] registerToGepCallback failed, retrying in ${REGISTER_RETRY_TIMEOUT}ms`
+		`[overwolf-nanostores] registerToGepCallback failed, retrying in ${REGISTER_RETRY_TIMEOUT}ms:`,
+		result.error
 	);
 	setTimeout(() => {
-		overwolfEvent.setRequiredFeatures(requiredFeaturesAtom.get(), registerToGepCallback);
+		gamesEvent.setRequiredFeatures(gameEventRequiredFeaturesAtom.get(), registerToGepCallback);
 	}, REGISTER_RETRY_TIMEOUT);
 }
 
-export function setRequiredFeatures(requiredFeatures: string[]) {
-	requiredFeaturesAtom.set(requiredFeatures);
-	overwolfEvent.setRequiredFeatures(requiredFeatures, registerToGepCallback);
+export function setGameEventRequiredFeatures(requiredFeatures: string[]) {
+	gameEventRequiredFeaturesAtom.set(requiredFeatures);
+	gamesEvent.setRequiredFeatures(requiredFeatures, registerToGepCallback);
 }

@@ -49,15 +49,24 @@
         "background_optimization": false,
         "is_background_page": true
       },
-      "in_game": {
+      "desktop": {
         "file": "index.html",
-        "in_game_only": true,
-        "focus_game_takeover": "ReleaseOnHidden",
-        "focus_game_takeover_release_hotkey": "showhide",
-        "block_top_window_navigation": true,
-        "resizable": false,
+        "native_window": true,
         "transparent": true,
-        "keep_window_location": false
+        "resizable": true,
+        "size": {
+          "width": 500,
+          "height": 500
+        },
+        "min_size": {
+          "width": 500,
+          "height": 500
+        },
+        "max_size": {
+          "width": 500,
+          "height": 500
+        },
+        "desktop_only": true
       }
     },
     "block_top_window_navigation": true,

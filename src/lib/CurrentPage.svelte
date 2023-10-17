@@ -2,14 +2,14 @@
 	import { WINDOWS_NAME } from '../consts';
 	import { currentWindowInfoAtom } from '../stores/currentWindow';
 	import BackgroundWindow from './BackgroundWindow.svelte';
-	import InGameWindow from './InGameWindow.svelte';
+	import DesktopWindow from './DesktopWindow.svelte';
 </script>
 
 {#if $currentWindowInfoAtom}
 	{#if $currentWindowInfoAtom.name === WINDOWS_NAME.BACKGROUND}
 		<BackgroundWindow />
-	{:else if $currentWindowInfoAtom.name === WINDOWS_NAME.IN_GAME}
-		<InGameWindow />
+	{:else if $currentWindowInfoAtom.name === WINDOWS_NAME.DESKTOP}
+		<DesktopWindow />
 	{:else}
 		<div>Not running</div>
 	{/if}
