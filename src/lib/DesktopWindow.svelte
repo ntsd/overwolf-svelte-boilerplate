@@ -1,51 +1,20 @@
 <script lang="ts">
-	import { GITHUB_LINK, WINDOWS_NAME } from '../consts';
+	import { GITHUB_LINK, WINDOWS_NAMES } from '../consts';
+	import { createWindowDragHandler } from '../utils/createWindowDragHandler';
 	import { getWindow } from '../utils/getWindow';
 
-	interface MousePostion {
-		x: number;
-		y: number;
-	}
-
-	let windowId: string | null = null;
-
-	getWindow(WINDOWS_NAME.DESKTOP).then((window) => {
-		windowId = window.id;
-	});
-
-	const SIGNIFICANT_MOUSE_MOVE_THRESHOLD = 1;
-	let mousePosition: MousePostion | null = null;
-	let isMouseDown: boolean = false;
-
-	function onDragStart({ clientX, clientY }: MouseEvent) {
-		isMouseDown = true;
-		mousePosition = {
-			x: clientX,
-			y: clientY
-		};
-	}
-
-	function isSignificantMouseMove({ clientX, clientY }: MouseEvent) {
-		if (!mousePosition) return false;
-
-		const diffX = Math.abs(clientX - mousePosition.x);
-		const diffY = Math.abs(clientY - mousePosition.y);
-		const isSignificant =
-			diffX > SIGNIFICANT_MOUSE_MOVE_THRESHOLD || diffY > SIGNIFICANT_MOUSE_MOVE_THRESHOLD;
-
-		return isSignificant;
-	}
-
-	function onMouseMove(event: MouseEvent) {
-		if (!isMouseDown || !isSignificantMouseMove(event)) return;
-		isMouseDown = false;
-		if (windowId) {
-			overwolf.windows.dragMove(windowId);
-		}
-	}
+	const { onDragStart, onMouseMove } = createWindowDragHandler(WINDOWS_NAMES.DESKTOP);
 
 	function openGithub() {
 		overwolf.utils.openUrlInDefaultBrowser(GITHUB_LINK);
+	}
+
+	async function minimizeWindow() {
+		(await getWindow(WINDOWS_NAMES.DESKTOP)).minimize();
+	}
+
+	async function closeWindow() {
+		(await getWindow(WINDOWS_NAMES.DESKTOP)).close();
 	}
 </script>
 
@@ -76,9 +45,7 @@
 		<button
 			class="icon window-control"
 			on:click={() => {
-				getWindow(WINDOWS_NAME.DESKTOP).then((w) => {
-					w.minimize();
-				});
+				minimizeWindow();
 			}}
 		>
 			<svg viewBox="0 0 30 30">
@@ -88,9 +55,7 @@
 		<button
 			class="icon window-control window-control-close"
 			on:click={() => {
-				getWindow(WINDOWS_NAME.BACKGROUND).then((w) => {
-					w.close();
-				});
+				closeWindow();
 			}}
 		>
 			<svg viewBox="0 0 30 30">

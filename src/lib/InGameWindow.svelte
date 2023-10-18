@@ -1,8 +1,18 @@
 <script lang="ts">
 </script>
 
-<div>
+<div class="flex flex-col gap-2">
     <div>In Game Window</div>
-    <div>Events</div>
-    <div>Infos</div>
+    <div>
+        <div>Events</div>
+        <div>
+            test
+        </div>
+    </div>
+    <div>
+        <div>Infos</div>
+        <div>
+            test
+        </div>
+    </div>
 </div>

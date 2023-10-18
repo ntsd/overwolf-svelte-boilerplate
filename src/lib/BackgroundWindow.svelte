@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { GAME_ID, REQUIRED_FEATURES, WINDOWS_NAME } from '../consts';
+	import { GAME_ID, REQUIRED_FEATURES, WINDOWS_NAMES } from '../consts';
 	import { getWindow } from '../utils/getWindow';
 	import { runningGameAtom } from '../stores/runningGame';
 	import { setGameEventRequiredFeatures } from '../stores/gameEvent';
@@ -11,11 +11,11 @@
 			// set require event features
 			setGameEventRequiredFeatures(REQUIRED_FEATURES);
 
-			getWindow(WINDOWS_NAME.IN_GAME).then((window) => {
+			getWindow(WINDOWS_NAMES.IN_GAME).then((window) => {
 				window.restore();
 			});
 		} else {
-			getWindow(WINDOWS_NAME.DESKTOP).then((window) => {
+			getWindow(WINDOWS_NAMES.DESKTOP).then((window) => {
 				window.restore();
 			});
 		}

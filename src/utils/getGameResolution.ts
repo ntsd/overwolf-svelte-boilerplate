@@ -1,14 +1,3 @@
-export async function setWindowFullScreen(windowId: string) {
-	const gameRes = await getGameResolution();
-
-	if (gameRes === null) {
-		return;
-	}
-
-	overwolf.windows.changeSize(windowId, gameRes.width, gameRes.height);
-	overwolf.windows.changePosition(windowId, 0, 0);
-}
-
 export async function getGameResolution(): Promise<{
 	width: number;
 	height: number;

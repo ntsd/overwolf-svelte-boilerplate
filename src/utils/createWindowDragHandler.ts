@@ -5,6 +5,11 @@ interface MousePostion {
 	y: number;
 }
 
+interface PositionEvent {
+	clientX: number;
+	clientY: number;
+}
+
 export function createWindowDragHandler(windowName: string) {
 	let windowId: string | null = null;
 
@@ -16,7 +21,7 @@ export function createWindowDragHandler(windowName: string) {
 	let mousePosition: MousePostion | null = null;
 	let isMouseDown: boolean = false;
 
-	function onDragStart({ clientX, clientY }: MouseEvent) {
+	function onDragStart({ clientX, clientY }: PositionEvent) {
 		isMouseDown = true;
 		mousePosition = {
 			x: clientX,
@@ -24,7 +29,7 @@ export function createWindowDragHandler(windowName: string) {
 		};
 	}
 
-	function isSignificantMouseMove({ clientX, clientY }: MouseEvent) {
+	function isSignificantMouseMove({ clientX, clientY }: PositionEvent) {
 		if (!mousePosition) return false;
 
 		const diffX = Math.abs(clientX - mousePosition.x);
@@ -35,7 +40,7 @@ export function createWindowDragHandler(windowName: string) {
 		return isSignificant;
 	}
 
-	function onMouseMove(event: MouseEvent) {
+	function onMouseMove(event: PositionEvent) {
 		if (!isMouseDown || !isSignificantMouseMove(event)) return;
 		isMouseDown = false;
 		if (windowId) {

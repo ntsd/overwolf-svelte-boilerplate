@@ -1,17 +1,18 @@
 <script lang="ts">
-	import { WINDOWS_NAME } from '../consts';
+	import { WINDOWS_NAMES } from '../consts';
 	import { currentWindowInfoAtom } from '../stores/currentWindow';
 	import BackgroundWindow from './BackgroundWindow.svelte';
 	import DesktopWindow from './DesktopWindow.svelte';
+	import InGameWindow from './InGameWindow.svelte';
 </script>
 
 {#if $currentWindowInfoAtom}
-	{#if $currentWindowInfoAtom.name === WINDOWS_NAME.BACKGROUND}
+	{#if $currentWindowInfoAtom.name === WINDOWS_NAMES.BACKGROUND}
 		<BackgroundWindow />
-	{:else if $currentWindowInfoAtom.name === WINDOWS_NAME.DESKTOP}
+	{:else if $currentWindowInfoAtom.name === WINDOWS_NAMES.DESKTOP}
 		<DesktopWindow />
-	{:else if $currentWindowInfoAtom.name === WINDOWS_NAME.IN_GAME}
-		<DesktopWindow />
+	{:else if $currentWindowInfoAtom.name === WINDOWS_NAMES.IN_GAME}
+		<InGameWindow />
 	{:else}
 		<div>Not any page</div>
 	{/if}
