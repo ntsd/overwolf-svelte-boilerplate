@@ -22,7 +22,10 @@ function overwolfFix(insideAdapter, options) {
 			globSync(`${path.join(mergedOptions.pages, builder.config.kit.appDir)}/**/*.js`, {}).forEach(
 				(filePath) => {
 					let js = readFileSync(filePath).toString();
-					js = js.replace("if (params) {", "if (params|true) {")
+
+					// Replace because params will be undefine and intent is not return
+					js = js.replace('if (params) {', 'if (params|true) {');
+
 					writeFileSync(filePath, js);
 				}
 			);
