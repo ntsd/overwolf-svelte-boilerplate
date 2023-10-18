@@ -1,14 +1,15 @@
-export const GITHUB_LINK = 'https://github.com/ntsd/lol-auto-accept';
+export const GITHUB_LINK = 'https://github.com/ntsd/overwolf-svelte-boilerplate';
 
-// LOL Client Features (event and info update)
-// @see https://overwolf.github.io/api/live-game-data/supported-launchers/league-of-legends
-export const REQUIRED_FEATURES = ['game_info'];
+// LOL event and info update features
+// @see https://overwolf.github.io/api/live-game-data/supported-games/league-of-legends
+export const REQUIRED_FEATURES = ['game_info', 'chat'];
 
 export const WINDOWS_NAME = {
 	BACKGROUND: 'background',
-	DESKTOP: 'desktop'
+	DESKTOP: 'desktop',
+	IN_GAME: 'in_game'
 };
 
 export const GAME_ID = {
-	LOL_LAUNCHER: 10902
+	LOL_GAME: 5426
 };

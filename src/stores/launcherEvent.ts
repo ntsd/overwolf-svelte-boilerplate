@@ -50,7 +50,7 @@ function getSetRequiredFeaturesCb(launcherClassId: number, requiredFeatures: str
 	return setRequiredFeaturesCb;
 }
 
-export function setLauncherRequiredFeatures(launcherClassId: number, requiredFeatures: string[]) {
+export function setLauncherEventRequiredFeatures(launcherClassId: number, requiredFeatures: string[]) {
 	launcherEvent.setRequiredFeatures(
 		launcherClassId,
 		requiredFeatures,

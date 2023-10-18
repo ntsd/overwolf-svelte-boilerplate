@@ -1,11 +1,57 @@
 <script lang="ts">
 	import { GITHUB_LINK, WINDOWS_NAME } from '../consts';
 	import { getWindow } from '../utils/getWindow';
+
+	interface MousePostion {
+		x: number;
+		y: number;
+	}
+
+	let windowId: string | null = null;
+
+	getWindow(WINDOWS_NAME.DESKTOP).then((window) => {
+		windowId = window.id;
+	});
+
+	const SIGNIFICANT_MOUSE_MOVE_THRESHOLD = 1;
+	let mousePosition: MousePostion | null = null;
+	let isMouseDown: boolean = false;
+
+	function onDragStart({ clientX, clientY }: MouseEvent) {
+		isMouseDown = true;
+		mousePosition = {
+			x: clientX,
+			y: clientY
+		};
+	}
+
+	function isSignificantMouseMove({ clientX, clientY }: MouseEvent) {
+		if (!mousePosition) return false;
+
+		const diffX = Math.abs(clientX - mousePosition.x);
+		const diffY = Math.abs(clientY - mousePosition.y);
+		const isSignificant =
+			diffX > SIGNIFICANT_MOUSE_MOVE_THRESHOLD || diffY > SIGNIFICANT_MOUSE_MOVE_THRESHOLD;
+
+		return isSignificant;
+	}
+
+	function onMouseMove(event: MouseEvent) {
+		if (!isMouseDown || !isSignificantMouseMove(event)) return;
+		isMouseDown = false;
+		if (windowId) {
+			overwolf.windows.dragMove(windowId);
+		}
+	}
+
+	function openGithub() {
+		overwolf.utils.openUrlInDefaultBrowser(GITHUB_LINK);
+	}
 </script>
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
-<header class="header" on:mousedown={() => {}} on:mousemove={() => {}}>
-	<h3 class="header-title">LoL Auto Accept</h3>
+<header class="header cursor-move" on:mousedown={onDragStart} on:mousemove={onMouseMove}>
+	<h3 class="header-title">Overwolf Svelte Boilerplate</h3>
 	<div class="window-controls-group">
 		<button
 			class="icon window-control"
@@ -18,10 +64,7 @@
 				/>
 			</svg>
 		</button>
-		<button
-			class="icon window-control"
-			on:click={() => overwolf.utils.openUrlInDefaultBrowser(GITHUB_LINK)}
-		>
+		<button class="icon window-control" on:click={() => openGithub()}>
 			<svg viewBox="0 0 30 30">
 				<rect x="13.5" y={19} width={2} height={2} fill="currentcolor" />
 				<path
@@ -57,7 +100,7 @@
 		</button>
 	</div>
 </header>
-<div class="container">test</div>
+<div class="container flex justify-center items-center">Inside Container</div>
 
 <style>
 	button {

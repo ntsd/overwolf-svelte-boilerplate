@@ -2,7 +2,7 @@ import { atom } from 'nanostores';
 
 type LogLevel = 'debug' | 'error' | 'none';
 
-export const logLevelAtom = atom<LogLevel>('debug');
+export const logLevelAtom = atom<LogLevel>('error');
 
 export function setLogLevel(level: LogLevel) {
 	logLevelAtom.set(level);

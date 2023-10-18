@@ -1,19 +1,23 @@
 <script lang="ts">
 	import { GAME_ID, REQUIRED_FEATURES, WINDOWS_NAME } from '../consts';
 	import { getWindow } from '../utils/getWindow';
-	import { setLauncherRequiredFeatures } from '../stores/launcherEvent';
-	import { runningLaunchersMap } from '../stores/runningLaunchers';
+	import { runningGameAtom } from '../stores/runningGame';
+	import { setGameEventRequiredFeatures } from '../stores/gameEvent';
 
-	runningLaunchersMap.subscribe((runningLaunchers) => {
-		Object.values(runningLaunchers).forEach((launcher) => {
-			const launcherRunning = launcher.classId === GAME_ID.LOL_LAUNCHER;
+	runningGameAtom.subscribe((runningGame) => {
+		const isGameRunning = runningGame && runningGame.classId === GAME_ID.LOL_GAME;
 
-			if (launcherRunning) {
-				setLauncherRequiredFeatures(launcher.classId, REQUIRED_FEATURES);
-				getWindow(WINDOWS_NAME.DESKTOP).then((window) => {
-					window.restore();
-				});
-			}
-		});
+		if (isGameRunning) {
+			// set require event features
+			setGameEventRequiredFeatures(REQUIRED_FEATURES);
+
+			getWindow(WINDOWS_NAME.IN_GAME).then((window) => {
+				window.restore();
+			});
+		} else {
+			getWindow(WINDOWS_NAME.DESKTOP).then((window) => {
+				window.restore();
+			});
+		}
 	});
 </script>

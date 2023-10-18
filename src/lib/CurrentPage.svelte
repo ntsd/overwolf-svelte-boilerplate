@@ -10,7 +10,9 @@
 		<BackgroundWindow />
 	{:else if $currentWindowInfoAtom.name === WINDOWS_NAME.DESKTOP}
 		<DesktopWindow />
+	{:else if $currentWindowInfoAtom.name === WINDOWS_NAME.IN_GAME}
+		<DesktopWindow />
 	{:else}
-		<div>Not running</div>
+		<div>Not any page</div>
 	{/if}
 {/if}
