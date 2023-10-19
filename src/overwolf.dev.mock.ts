@@ -200,7 +200,7 @@ const overwolfMock: typeof overwolf = {
 	}
 };
 
-// will using mock if env is development
+// will using mock if env is development (which add by vite)
 export default process.env.NODE_ENV === 'development' &&
 	Object.defineProperty(window, 'overwolf', {
 		writable: true,
