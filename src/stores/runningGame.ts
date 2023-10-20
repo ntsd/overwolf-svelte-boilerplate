@@ -1,7 +1,7 @@
 import { atom } from 'nanostores';
 import { logDebug } from './logLevel';
 
-export const runningGameAtom = atom<overwolf.games.RunningGameInfo | undefined>(undefined);
+export const runningGameAtom = atom<overwolf.games.RunningGameInfo | undefined>();
 
 function onGameInfoUpdated(payload: overwolf.games.GameInfoUpdatedEvent) {
 	runningGameAtom.set(payload.gameInfo);

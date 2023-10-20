@@ -4,8 +4,6 @@ A minimial Svelte boilerplate for Overwolf, inspired by [Overwolf Modern React B
 
 ## Features
 
-
-
 ## Requirements
 
 - Node version >=18
@@ -14,7 +12,8 @@ A minimial Svelte boilerplate for Overwolf, inspired by [Overwolf Modern React B
 
 Clone it with Github's "Use this template" option:
 
-<a href="https://github.com/new?template_name=overwolf-svelte-boilerplate&template_owner=ntsd">
+
+<a class="btn-primary btn" href="https://github.com/new?template_name=overwolf-svelte-boilerplate&template_owner=ntsd">
 <span class="d-none d-md-flex  flex-items-center">
     Use this template
 </span>
