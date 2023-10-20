@@ -1,5 +1,6 @@
 import adapter from '@sveltejs/adapter-static';
 import { vitePreprocess } from '@sveltejs/kit/vite';
+import { mdsvex } from 'mdsvex';
 
 import { globSync } from 'glob';
 import path from 'node:path';
@@ -34,7 +35,8 @@ function overwolfFix(insideAdapter, options) {
 }
 
 const config = {
-	preprocess: vitePreprocess(),
+	extensions: ['.svelte', '.svx', '.md'],
+	preprocess: [vitePreprocess(), mdsvex({ extensions: ['.svx', '.md'] })],
 	kit: {
 		paths: {
 			base: '',

@@ -57,16 +57,16 @@
         "transparent": true,
         "resizable": true,
         "size": {
-          "width": 500,
-          "height": 500
+          "width": 600,
+          "height": 800
         },
         "min_size": {
-          "width": 500,
-          "height": 500
+          "width": 600,
+          "height": 800
         },
         "max_size": {
-          "width": 500,
-          "height": 500
+          "width": 600,
+          "height": 800
         },
         "desktop_only": true
       },

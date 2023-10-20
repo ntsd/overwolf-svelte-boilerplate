@@ -8,7 +8,7 @@ export default {
 	theme: {
 		extend: {}
 	},
-	plugins: [daisyui],
+	plugins: [require('@tailwindcss/typography'), daisyui],
 	daisyui: {
 		styled: true,
 		base: false, // don't apply base color, eg. default background

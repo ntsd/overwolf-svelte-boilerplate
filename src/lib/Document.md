@@ -12,7 +12,6 @@ A minimial Svelte boilerplate for Overwolf, inspired by [Overwolf Modern React B
 - Nano Stores by [Overwolf Nano Stores](https://github.com/ntsd/overwolf-nanostores)
 - TailwindCSS and [DaisyUI](https://daisyui.com/)
 - TypeScript
-- Markdown render by [MDsveX](https://github.com/pngwn/MDsveX)
 
 ## Requirements
 
@@ -22,7 +21,7 @@ A minimial Svelte boilerplate for Overwolf, inspired by [Overwolf Modern React B
 
 Clone with Github's "Use this template":
 
-[![use this template](/static/useThisTemplate.svg)](https://github.com/new?template_name=overwolf-svelte-boilerplate&template_owner=ntsd)
+[![use this template](/useThisTemplate.svg)](https://github.com/new?template_name=overwolf-svelte-boilerplate&template_owner=ntsd)
 
 Clone with [degit](https://github.com/Rich-Harris/degit):
 
