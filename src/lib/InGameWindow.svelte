@@ -2,15 +2,22 @@
 	import { REQUIRED_FEATURES, WINDOWS_NAMES } from '../consts';
 	import { createWindowDragHandler } from '../utils/createWindowDragHandler';
 	import { getWindow } from '../utils/getWindow';
-	import { gameEventAtom, setGameEventRequiredFeatures } from '../stores/gameEvent';
-	import { gameInfoAtom } from '../stores/gameEvent';
+	import {
+		gameEventAtom,
+		setGameEventRequiredFeatures,
+		gameInfoAtom,
+		setLogLevel
+	} from 'overwolf-nanostores';
 
 	const { onDragStart, onMouseMove } = createWindowDragHandler(WINDOWS_NAMES.IN_GAME);
 
+	let minimize = false;
+
+	// remove this in production to not display debug log
+	setLogLevel('debug');
+
 	// set require event features
 	setGameEventRequiredFeatures(REQUIRED_FEATURES);
-
-	let minimize = false;
 
 	async function closeWindow() {
 		(await getWindow(WINDOWS_NAMES.IN_GAME)).close();
@@ -18,7 +25,7 @@
 
 	gameInfoAtom.subscribe((newInfo) => {
 		if (!newInfo) return;
-		if (newInfo.feature === 'math_info') {
+		if (newInfo.feature === 'match_info') {
 			// @ts-ignore
 			if (newInfo.info?.match_info?.game_mode === 'tft') {
 				// close the window if it's TFT (LOL and TFT using the same client)

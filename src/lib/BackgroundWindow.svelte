@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { GAME_ID, WINDOWS_NAMES } from '../consts';
 	import { getWindow } from '../utils/getWindow';
-	import { runningGameAtom } from '../stores/runningGame';
+	import { runningGameAtom } from 'overwolf-nanostores';
 
 	runningGameAtom.subscribe((runningGame) => {
 		const isGameRunning = runningGame && runningGame.classId === GAME_ID.LOL_GAME;
