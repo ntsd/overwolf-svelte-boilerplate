@@ -4,32 +4,26 @@ import { logDebug, logError } from './logLevel';
 const gamesEvent = overwolf.games.events;
 const REGISTER_RETRY_TIMEOUT = 10000;
 
-export interface GameEventData<GameInfo, GameEvent> {
-	info?: GameInfo;
-	events?: GameEvent[];
+export const gameEventRequiredFeaturesAtom = atom<string[]>([]);
+export const gameEventAtom = atom<overwolf.games.events.NewGameEvents | undefined>();
+export const gameInfoAtom = atom<overwolf.games.events.InfoUpdates2Event | undefined>();
+
+function handleGameInfo(newInfo: overwolf.games.events.InfoUpdates2Event) {
+	gameInfoAtom.set(newInfo);
+	logDebug('[overwolf-nanostores] gameInfo', JSON.stringify(newInfo));
 }
 
-export const gameEventRequiredFeaturesAtom = atom<string[]>([]);
-export const gameEventAtom = atom<unknown[]>([]);
-export const gameInfoAtom = atom<unknown>({});
-
-function handleGameEvent({ info, events }: GameEventData<unknown, unknown>) {
-	if (info) {
-		gameInfoAtom.set(info);
-		logDebug('[overwolf-nanostores] gameInfo', JSON.stringify(info));
-	}
-	if (events) {
-		gameEventAtom.set(events);
-		logDebug('[overwolf-nanostores] gameEvent', JSON.stringify(events));
-	}
+function handleGameEvent(newEvent: overwolf.games.events.NewGameEvents) {
+	gameEventAtom.set(newEvent);
+	logDebug('[overwolf-nanostores] gameEvent', JSON.stringify(newEvent));
 }
 
 function registerToGepCallback(result: overwolf.games.events.SetRequiredFeaturesResult) {
 	if (result.success) {
-		gamesEvent.onInfoUpdates2.removeListener(handleGameEvent);
+		gamesEvent.onInfoUpdates2.removeListener(handleGameInfo);
 		gamesEvent.onNewEvents.removeListener(handleGameEvent);
 
-		gamesEvent.onInfoUpdates2.addListener(handleGameEvent);
+		gamesEvent.onInfoUpdates2.addListener(handleGameInfo);
 		gamesEvent.onNewEvents.addListener(handleGameEvent);
 		return;
 	}

@@ -1,7 +1,7 @@
 import { atom } from 'nanostores';
 import { logDebug } from './logLevel';
 
-export const currentWindowInfoAtom = atom<overwolf.windows.WindowInfo | null>(null);
+export const currentWindowInfoAtom = atom<overwolf.windows.WindowInfo | undefined>();
 
 overwolf.windows.getCurrentWindow((result) => {
 	if (result.success) {
