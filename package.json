@@ -2,6 +2,7 @@
 	"name": "lol-auto-accept",
 	"version": "0.0.1",
 	"private": true,
+	"type": "module",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
@@ -9,7 +10,9 @@
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"lint": "prettier --plugin-search-dir . --check . && eslint .",
-		"format": "prettier --plugin-search-dir . --write ."
+		"format": "prettier --plugin-search-dir . --write .",
+		"create-opk": "cd build && tar -acf ../dist-opk.v$npm_package_version.opk *",
+		"build:overwolf": "npm run build && npm run create-opk"
 	},
 	"devDependencies": {
 		"@overwolf/types": "^3.23.9",
@@ -40,6 +43,5 @@
 		"tslib": "^2.4.1",
 		"typescript": "^5.0.0",
 		"vite": "^4.4.2"
-	},
-	"type": "module"
+	}
 }

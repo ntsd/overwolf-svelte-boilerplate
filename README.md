@@ -1,4 +1,4 @@
-# Overlwolf Svelte Boilerplate
+# Overwolf Svelte Boilerplate
 
 A minimial Svelte boilerplate for Overwolf, inspired by [Overwolf Modern React Boilerplate](https://github.com/AlbericoD/overwolf-modern-react-boilerplate)
 
@@ -34,8 +34,11 @@ cd overwolf-svelte-boilerplate
 # install dependencies
 npm i
 
-# build overwolf plugin
+# build overwolf plugin, you can now use `Load unpacked extension` to test the local plugin at `build`.
 npm run build
+
+# create opk file
+npm run create-opk
 ```
 
 ## Project Structure
