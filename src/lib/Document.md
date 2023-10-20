@@ -5,13 +5,12 @@ A minimial Svelte boilerplate for Overwolf, inspired by [Overwolf Modern React B
 ## Features
 
 - Overwolf Plugin
-- In game overlay
-- Desktop window
-- Background
+- In game overlay and Desktop window
 - Svelte and ES Modules support
 - Nano Stores by [Overwolf Nano Stores](https://github.com/ntsd/overwolf-nanostores)
 - TailwindCSS and [DaisyUI](https://daisyui.com/)
-- TypeScript
+- Markdown render by [MDsveX](https://github.com/pngwn/MDsveX)
+- Drag to move windows
 
 ## Requirements
 
