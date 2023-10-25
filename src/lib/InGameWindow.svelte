@@ -22,19 +22,6 @@
 	async function closeWindow() {
 		(await getWindow(WINDOWS_NAMES.IN_GAME)).close();
 	}
-
-	gameInfoAtom.subscribe((newInfo) => {
-		if (!newInfo) return;
-		if (newInfo.feature === 'match_info') {
-			// @ts-ignore
-			if (newInfo.info?.match_info?.game_mode === 'tft') {
-				// close the window if it's TFT (LOL and TFT using the same client)
-				getWindow(WINDOWS_NAMES.IN_GAME).then((window) => {
-					window.close();
-				});
-			}
-		}
-	});
 </script>
 
 <div class="flex flex-col h-screen max-h-screen">

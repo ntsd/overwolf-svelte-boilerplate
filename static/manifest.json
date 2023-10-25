@@ -42,7 +42,8 @@
       }
     ],
     "game_events": [
-      5426
+      5426,
+      10902
     ],
     "start_window": "background",
     "windows": {
