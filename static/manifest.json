@@ -13,15 +13,10 @@
     "description": "Svelte Boilerplate for Overwolf"
   },
   "permissions": [
-    "GameInfo",
-    "GameControl"
+    "GameInfo"
   ],
   "data": {
-    "externally_connectable": {
-      "matches": [
-        "http://localhost:23453"
-      ]
-    },
+    "externally_connectable": {},
     "game_targeting": {
       "type": "dedicated",
       "game_ids": [
