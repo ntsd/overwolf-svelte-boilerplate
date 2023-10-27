@@ -68,7 +68,7 @@
 			</button>
 		</div>
 	</header>
-	<div class="container p-4 h-full prose lg:prose-xl overflow-y-auto overflow-x-clip">
+	<div class="container p-4 h-full w-full overflow-y-auto overflow-x-clip prose-xl max-w-none">
 		<Document />
 	</div>
 </div>
